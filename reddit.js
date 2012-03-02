@@ -137,7 +137,7 @@ var instance = {
                 sendRequest("http://www.reddit.com/by_id/" + fullName + ".json", callback);
             },
             fetchCommentsById : function(id, callback){
-                sendRequest("http://www,reddit.com/comments/" + id + ".json", callback)
+                sendRequest("http://www.reddit.com/comments/" + id + ".json", callback)
             },
             showReddit : function(sr){
                 var sub;
