@@ -78,7 +78,7 @@ function sendRequest(url,callback,postData)
     req.onreadystatechange = function () {
             if (req.readyState != 4) return;
             if (req.status != 200 && req.status != 304) {
-                errorCode = 'HTTP error: ' + req.status;
+                var errorCode = 'HTTP error: ' + req.status;
                 callback(errorCode);
             }
             
@@ -108,7 +108,7 @@ function sendRequest(url,callback,postData)
      *@modHash: string. Required for making authenticated requests to Reddit API
      *@data: user object passed from Reddit. See Reddit API documentation
      ***************************************************************************/
-    user = {
+    var user = {
         modHash : '',
         name: '',
         password: '',
@@ -123,7 +123,7 @@ var instance = {
         read : {
             //var subReddit = sr ? sr : 'frontpage';
             fetchReddit : function(sr, count, callback){
-                srCount = count ? count : '25'
+                var srCount = count ? count : '25'
                 var sub;
                 if (sr == 'frontpage'){
                         sub = '';
@@ -133,7 +133,7 @@ var instance = {
                 sendRequest("http://www.reddit.com/"+sub+ ".json?count=" + srCount, callback)
             },
             fetchById : function(type, id, callback){
-                fullName = type + '_' + id;
+                var fullName = type + '_' + id;
                 sendRequest("http://www.reddit.com/by_id/" + fullName + ".json", callback);
             },
             fetchCommentsById : function(id, callback){
@@ -148,11 +148,11 @@ var instance = {
                 };
             },
             myReddits: function(callback){
-                    url = 'http://www.reddit.com/reddits/mine.json';
+                    var url = 'http://www.reddit.com/reddits/mine.json';
                     sendRequest(url, callback);
                 },
             defaultReddits: function(callback){
-                    url = 'http://www.reddit.com/reddits/.json';
+                    var url = 'http://www.reddit.com/reddits/.json';
                     sendRequest(url, callback);
                 },
             fetchProfile: function(user, callback){
@@ -175,7 +175,7 @@ var instance = {
                             }
                         }
                     }else{
-                        messages = msg; 
+                        var messages = msg; 
                     }
                     callback(messages);
                 });
@@ -216,7 +216,7 @@ var instance = {
 
      markMailRead: function(mailId, callback){
         var url = 'http://www.reddit.com/api/read_message/';
-        postData =
+        var postData =
         {
             api_type: 'json',
             id: mailId,
